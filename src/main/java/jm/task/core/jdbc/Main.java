@@ -1,23 +1,23 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.service.UserServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
-        UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
+        UserServiceImpl userService = new UserServiceImpl();
 //        // Создание таблицы User(ов)
-        userDaoJDBC.createUsersTable();
+        userService.createUsersTable();
 //        //  Добавление 4 User(ов) в таблицу
-        userDaoJDBC.saveUser("Alexander","Pushkin",(byte)37);
-        userDaoJDBC.saveUser("Fyodor", "Dostoevsky", (byte)59);
-        userDaoJDBC.saveUser("Mikhail", "Lermontov", (byte)26);
-        userDaoJDBC.saveUser("Sergey", "Yesenin", (byte)30);
+        userService.saveUser("Alexander","Pushkin",(byte)37);
+        userService.saveUser("Fyodor", "Dostoevsky", (byte)59);
+        userService.saveUser("Mikhail", "Lermontov", (byte)26);
+        userService.saveUser("Sergey", "Yesenin", (byte)30);
         //Получение всех User из базы и вывод в консоль
-        System.out.println(userDaoJDBC.getAllUsers().toString());
+        System.out.println(userService.getAllUsers());
         //Очистка таблицы User(ов)
-        userDaoJDBC.cleanUsersTable();
+        userService.cleanUsersTable();
         //Удаление таблицы
-        userDaoJDBC.dropUsersTable();
+        userService.dropUsersTable();
 
 //        userDaoJDBC.removeUserById(2);
 

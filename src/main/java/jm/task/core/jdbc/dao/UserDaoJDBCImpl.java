@@ -15,13 +15,12 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
+        Util.getBasaDate();
+        String sqlCommand = "CREATE TABLE IF NOT EXISTS people (Id INT PRIMARY KEY AUTO_INCREMENT, Name VARCHAR(20), LastName VARCHAR(20), AGE INT)";
         try {
-            Util.getBasaDate();
-            String sqlCommand = "CREATE TABLE people (Id INT PRIMARY KEY AUTO_INCREMENT, Name VARCHAR(20), LastName VARCHAR(20), AGE INT)";
             Util.getStatement().executeUpdate(sqlCommand);
-
-        }catch (Exception e){
-            System.out.println("Таблица уже была создана, зачем нам повторно ее создавать?)");
+        } catch (Exception e){
+            e.printStackTrace();
 
         }
 
@@ -29,12 +28,12 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void dropUsersTable() {
         Util.getBasaDate();
-        String sqlDelete = "DROP TABLE people";
+        String sqlDelete = "DROP TABLE IF EXISTS people";
         try {
             Util.getStatement().executeUpdate(sqlDelete);
             System.out.println("Таблица успешно удалена");
         } catch (SQLException e) {
-            System.out.println("Таблицы и не существовало");
+            e.printStackTrace();
 
         }
 
