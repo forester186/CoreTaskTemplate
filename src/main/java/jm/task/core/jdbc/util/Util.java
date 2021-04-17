@@ -32,6 +32,7 @@ public class Util {
             properties.put(Environment.DIALECT, DIALECT);
             properties.put(Environment.SHOW_SQL, "true");
             properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+            properties.put(Environment.HBM2DDL_AUTO, "update");
 
             configuration.setProperties(properties);
             configuration.addAnnotatedClass(User.class);
@@ -45,7 +46,7 @@ public class Util {
             System.out.println("sessionFactory не создан");
             e.printStackTrace();
         }
-        System.out.println("Ура");
+
         return sessionFactory;
     }
 }
